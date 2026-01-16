@@ -4,13 +4,13 @@ A production-grade Retrieval-Augmented Generation (RAG) system that enables user
 
 ## Features
 
-- 📄 **Document Processing**: Upload and index PDF documents and web content
-- 🔍 **Semantic Search**: Find relevant information using embeddings and vector similarity
-- 🎯 **Reranking**: Improve result relevance with cross-encoder models
-- 📚 **Citations**: Get answers with source references for verification
-- 🛡️ **Hallucination Control**: Responses grounded only in your documents
-- 🤖 **Flexible LLM Support**: Use OpenAI or open-source models (Llama, Mistral)
-- 🎨 **Modern UI**: Clean, responsive Next.js interface with Tailwind CSS
+- **Document Processing**: Upload and index PDF documents and web content
+- **Semantic Search**: Find relevant information using embeddings and vector similarity
+- **Reranking**: Improve result relevance with cross-encoder models
+- **Citations**: Get answers with source references for verification
+- **Hallucination Control**: Responses grounded only in your documents
+- **Flexible LLM Support**: Use OpenAI or open-source models (Llama, Mistral)
+- **Modern UI**: Clean, responsive Next.js interface with Tailwind CSS
 
 ## Architecture
 
@@ -192,7 +192,7 @@ npm run test:watch      # Watch mode
 - `GET /settings/api-key` - Get current provider
 - `POST /settings/test-connection` - Test LLM connection
 
-## 📚 About This Project
+## About This Project
 
 This is an educational project developed as part of college coursework to learn about:
 - Retrieval-Augmented Generation (RAG) systems
