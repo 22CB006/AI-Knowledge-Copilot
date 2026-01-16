@@ -1,0 +1,38 @@
+{
+  "enabled": true,
+  "name": "Auto-cleanup Unwanted Files",
+  "description": "Automatically detects and prompts to delete unwanted files after creation, such as test files, temporary files, log files, cache files, and other artifacts that shouldn't be committed to the repository. Keeps only essential files needed for others to clone and run the project locally.",
+  "version": "1",
+  "when": {
+    "type": "fileCreated",
+    "patterns": [
+      "**/*.log",
+      "**/*.tmp",
+      "**/*.temp",
+      "**/test_*.py",
+      "**/*_test.py",
+      "**/*.test.js",
+      "**/*.test.ts",
+      "**/*.test.tsx",
+      "**/debug_*.py",
+      "**/debug_*.js",
+      "**/.DS_Store",
+      "**/Thumbs.db",
+      "**/*.pyc",
+      "**/__pycache__/**",
+      "**/node_modules/**",
+      "**/.pytest_cache/**",
+      "**/.coverage",
+      "**/coverage/**",
+      "**/*.swp",
+      "**/*.swo",
+      "**/dump.rdb",
+      "**/*.sqlite",
+      "**/*.db-journal"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A file has been created that may be unwanted for the GitHub repository. Analyze if this file is a temporary/test file that should be deleted to keep the repo clean for cloning and running locally. If it's unwanted (like test files, logs, cache, temp files, or debug files), delete it immediately. Only keep files essential for the project to run. List what you're deleting and why."
+  }
+}

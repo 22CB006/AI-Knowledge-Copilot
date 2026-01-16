@@ -1,0 +1,30 @@
+embedding:
+  model: all-MiniLM-L6-v2
+  dimension: 384
+
+chunking:
+  chunk_size: 512
+  overlap: 50
+
+retrieval:
+  top_k: 10
+  similarity_threshold: 0.5
+
+reranking:
+  model: cross-encoder/ms-marco-MiniLM-L-6-v2
+  top_n: 5
+
+llm:
+  provider: openai  # or huggingface
+  temperature: 0.7
+  max_tokens: 500
+
+storage:
+  faiss_index_path: ./data/faiss_index
+  metadata_db_path: ./data/metadata.db
+
+api:
+  host: 0.0.0.0
+  port: 8000
+  cors_origins:
+    - http://localhost:3000
