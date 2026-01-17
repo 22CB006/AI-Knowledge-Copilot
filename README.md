@@ -209,4 +209,4 @@ This is an educational project developed as part of college coursework to learn 
 
 This project follows a spec-driven development approach. See `.kiro/specs/` for detailed requirements, design, and implementation tasks.
 
-All code and documentation © 2025. All rights reserved.
+All code and documentation © 2026. All rights reserved.
