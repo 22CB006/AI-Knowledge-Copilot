@@ -41,20 +41,23 @@
     - **Property 17: Citation field completeness**
     - **Validates: Requirements 5.3**
 
-- [ ] 3. Implement text chunking system
-  - [ ] 3.1 Create TextChunker class with configurable size and overlap
+- [x] 3. Implement text chunking system
+  - [x] 3.1 Create TextChunker class with configurable size and overlap
     - Implement chunk_text() method to split text into chunks
     - Implement overlap logic between consecutive chunks
     - Preserve metadata (document_id, chunk_index) for each chunk
     - Handle edge cases (text shorter than chunk size, empty text)
     - _Requirements: 2.1, 2.2, 2.3_
-  - [ ]* 3.2 Write property test for chunk size constraint
+  - [x] 3.2 Write property test for chunk size constraint
+
     - **Property 3: Chunk size constraint**
     - **Validates: Requirements 2.1**
-  - [ ]* 3.3 Write property test for chunk overlap
+  - [x] 3.3 Write property test for chunk overlap
+
     - **Property 4: Chunk overlap preservation**
     - **Validates: Requirements 2.2**
-  - [ ]* 3.4 Write unit tests for edge cases
+  - [x] 3.4 Write unit tests for edge cases
+
     - Test chunking with text shorter than chunk size
     - Test chunking with exact multiples of chunk size
     - Test empty text handling
