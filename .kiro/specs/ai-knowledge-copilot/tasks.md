@@ -62,20 +62,23 @@
     - Test chunking with exact multiples of chunk size
     - Test empty text handling
 
-- [ ] 4. Implement embedding generation
-  - [ ] 4.1 Create EmbeddingGenerator class using Sentence Transformers
+- [x] 4. Implement embedding generation
+  - [x] 4.1 Create EmbeddingGenerator class using Sentence Transformers
     - Initialize with configurable model (default: all-MiniLM-L6-v2)
     - Implement embed_text() for single text
     - Implement embed_batch() for efficient batch processing
     - Add get_embedding_dimension() method
     - _Requirements: 2.4, 3.1_
-  - [ ]* 4.2 Write property test for embedding generation
+  - [x] 4.2 Write property test for embedding generation
+
     - **Property 6: Embedding generation completeness**
     - **Validates: Requirements 2.4**
-  - [ ]* 4.3 Write property test for query embedding consistency
+  - [x] 4.3 Write property test for query embedding consistency
+
     - **Property 8: Query embedding dimension consistency**
     - **Validates: Requirements 3.1**
-  - [ ]* 4.4 Write unit tests for batch processing
+  - [x] 4.4 Write unit tests for batch processing
+
     - Test batch embedding with various batch sizes
     - Verify embedding dimensions match model output
 
