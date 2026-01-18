@@ -123,7 +123,8 @@
 
     - **Property 31: Document listing completeness**
     - **Validates: Requirements 11.2**
-  - [ ]* 6.4 Write unit tests for CRUD operations
+  - [x] 6.4 Write unit tests for CRUD operations
+
     - Test adding and retrieving documents
     - Test cascade deletion of chunks when document is deleted
     - Test querying chunks by document ID

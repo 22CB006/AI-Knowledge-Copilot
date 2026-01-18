@@ -339,6 +339,195 @@ class TestMetadataStore:
         # Verify only one chunk exists
         chunks = store.get_document_chunks('doc1')
         assert len(chunks) == 1
+    
+    # Additional CRUD tests for task 6.4
+    
+    def test_add_and_retrieve_multiple_documents(self, store):
+        """Test adding multiple documents and retrieving each individually."""
+        # Add multiple documents with different metadata
+        documents_data = [
+            {
+                'id': 'doc1',
+                'metadata': {
+                    'source': '/path/to/doc1.pdf',
+                    'source_type': 'pdf',
+                    'created_at': datetime.now().isoformat(),
+                    'title': 'Document 1',
+                    'author': 'Author A'
+                }
+            },
+            {
+                'id': 'doc2',
+                'metadata': {
+                    'source': 'https://example.com/page',
+                    'source_type': 'web',
+                    'created_at': datetime.now().isoformat(),
+                    'title': 'Web Page',
+                    'url': 'https://example.com/page'
+                }
+            },
+            {
+                'id': 'doc3',
+                'metadata': {
+                    'source': '/path/to/doc3.pdf',
+                    'source_type': 'pdf',
+                    'created_at': datetime.now().isoformat(),
+                    'title': 'Document 3'
+                }
+            }
+        ]
+        
+        # Add all documents
+        for doc_data in documents_data:
+            store.add_document(doc_data['id'], doc_data['metadata'])
+        
+        # Retrieve and verify each document
+        for doc_data in documents_data:
+            retrieved = store.get_document_metadata(doc_data['id'])
+            assert retrieved is not None
+            assert retrieved['id'] == doc_data['id']
+            assert retrieved['source'] == doc_data['metadata']['source']
+            assert retrieved['source_type'] == doc_data['metadata']['source_type']
+            assert retrieved['title'] == doc_data['metadata']['title']
+    
+    def test_cascade_deletion_with_multiple_documents(self, store):
+        """Test cascade deletion works correctly with multiple documents."""
+        # Add multiple documents with chunks
+        for doc_idx in range(3):
+            doc_id = f'doc{doc_idx}'
+            doc_metadata = {
+                'source': f'/path/to/doc{doc_idx}.pdf',
+                'source_type': 'pdf',
+                'created_at': datetime.now().isoformat()
+            }
+            store.add_document(doc_id, doc_metadata)
+            
+            # Add chunks for each document
+            for chunk_idx in range(2):
+                chunk_id = f'chunk_{doc_idx}_{chunk_idx}'
+                chunk_metadata = {
+                    'document_id': doc_id,
+                    'text': f'Text for doc {doc_idx} chunk {chunk_idx}',
+                    'chunk_index': chunk_idx
+                }
+                store.add_chunk(chunk_id, chunk_metadata)
+        
+        # Verify all documents and chunks exist
+        assert len(store.list_documents()) == 3
+        assert len(store.get_document_chunks('doc0')) == 2
+        assert len(store.get_document_chunks('doc1')) == 2
+        assert len(store.get_document_chunks('doc2')) == 2
+        
+        # Delete middle document
+        store.delete_document('doc1')
+        
+        # Verify doc1 and its chunks are deleted
+        assert store.get_document_metadata('doc1') is None
+        assert len(store.get_document_chunks('doc1')) == 0
+        assert store.get_chunk_metadata('chunk_1_0') is None
+        assert store.get_chunk_metadata('chunk_1_1') is None
+        
+        # Verify other documents and their chunks still exist
+        assert len(store.list_documents()) == 2
+        assert store.get_document_metadata('doc0') is not None
+        assert store.get_document_metadata('doc2') is not None
+        assert len(store.get_document_chunks('doc0')) == 2
+        assert len(store.get_document_chunks('doc2')) == 2
+        assert store.get_chunk_metadata('chunk_0_0') is not None
+        assert store.get_chunk_metadata('chunk_2_0') is not None
+    
+    def test_query_chunks_by_document_id_ordering(self, store):
+        """Test that chunks are returned in consistent order when queried by document ID."""
+        # Add document
+        doc_metadata = {
+            'source': '/path/to/document.pdf',
+            'source_type': 'pdf',
+            'created_at': datetime.now().isoformat()
+        }
+        store.add_document('doc1', doc_metadata)
+        
+        # Add chunks in non-sequential order
+        chunk_ids = ['chunk_5', 'chunk_1', 'chunk_3', 'chunk_2', 'chunk_4']
+        for chunk_id in chunk_ids:
+            chunk_metadata = {
+                'document_id': 'doc1',
+                'text': f'Text for {chunk_id}',
+                'chunk_index': int(chunk_id.split('_')[1])
+            }
+            store.add_chunk(chunk_id, chunk_metadata)
+        
+        # Query chunks multiple times
+        result1 = store.get_document_chunks('doc1')
+        result2 = store.get_document_chunks('doc1')
+        result3 = store.get_document_chunks('doc1')
+        
+        # Verify consistent ordering
+        assert result1 == result2 == result3
+        assert len(result1) == 5
+        
+        # Verify all chunks are present
+        assert set(result1) == set(chunk_ids)
+    
+    def test_retrieve_chunk_with_all_metadata_fields(self, store):
+        """Test that retrieving a chunk returns all metadata fields."""
+        # Add document
+        doc_metadata = {
+            'source': '/path/to/document.pdf',
+            'source_type': 'pdf',
+            'created_at': datetime.now().isoformat()
+        }
+        store.add_document('doc1', doc_metadata)
+        
+        # Add chunk with comprehensive metadata
+        chunk_metadata = {
+            'document_id': 'doc1',
+            'text': 'This is the chunk text content',
+            'chunk_index': 5,
+            'page_number': 3,
+            'start_char': 1000,
+            'end_char': 1500,
+            'embedding_model': 'all-MiniLM-L6-v2'
+        }
+        store.add_chunk('chunk1', chunk_metadata)
+        
+        # Retrieve chunk
+        retrieved = store.get_chunk_metadata('chunk1')
+        
+        # Verify all fields are present
+        assert retrieved is not None
+        assert retrieved['id'] == 'chunk1'
+        assert retrieved['document_id'] == 'doc1'
+        assert retrieved['text'] == 'This is the chunk text content'
+        assert retrieved['chunk_index'] == 5
+        assert retrieved['page_number'] == 3
+        assert retrieved['start_char'] == 1000
+        assert retrieved['end_char'] == 1500
+        assert retrieved['embedding_model'] == 'all-MiniLM-L6-v2'
+    
+    def test_delete_nonexistent_document(self, store):
+        """Test that deleting a non-existent document doesn't raise an error."""
+        # Attempt to delete non-existent document
+        store.delete_document('nonexistent_doc')
+        
+        # Verify no error occurred and database is still functional
+        assert len(store.list_documents()) == 0
+    
+    def test_add_document_then_query_chunks_before_adding_chunks(self, store):
+        """Test querying chunks for a document that has no chunks yet."""
+        # Add document
+        doc_metadata = {
+            'source': '/path/to/document.pdf',
+            'source_type': 'pdf',
+            'created_at': datetime.now().isoformat()
+        }
+        store.add_document('doc1', doc_metadata)
+        
+        # Query chunks before adding any
+        chunks = store.get_document_chunks('doc1')
+        
+        # Should return empty list, not None or error
+        assert chunks == []
+        assert len(chunks) == 0
 
 
 class TestDocumentListingCompleteness:
