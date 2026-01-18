@@ -107,18 +107,20 @@
     - **Property 10: Retrieval score ordering**
     - **Validates: Requirements 3.4**
 
-- [ ] 6. Implement metadata storage
-  - [ ] 6.1 Create MetadataStore class using SQLite
+- [x] 6. Implement metadata storage
+  - [x] 6.1 Create MetadataStore class using SQLite
     - Design schema: documents table, chunks table with foreign keys
     - Implement add_document() and add_chunk() methods
     - Implement get_chunk_metadata() and get_document_chunks()
     - Implement delete_document() with cascade deletion
     - Implement list_documents() to return all indexed documents
     - _Requirements: 2.3, 11.1, 11.2, 11.5_
-  - [ ]* 6.2 Write property test for metadata-vector consistency
+  - [x] 6.2 Write property test for metadata-vector consistency
+
     - **Property 33: Metadata-vector consistency**
     - **Validates: Requirements 11.5**
-  - [ ]* 6.3 Write property test for document listing
+  - [x] 6.3 Write property test for document listing
+
     - **Property 31: Document listing completeness**
     - **Validates: Requirements 11.2**
   - [ ]* 6.4 Write unit tests for CRUD operations
