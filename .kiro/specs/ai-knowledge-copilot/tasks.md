@@ -83,23 +83,27 @@
     - Verify embedding dimensions match model output
 
 - [ ] 5. Implement FAISS vector store
-  - [ ] 5.1 Create VectorStore class wrapping FAISS
+  - [x] 5.1 Create VectorStore class wrapping FAISS
     - Initialize FAISS index (IndexFlatL2 for development)
     - Implement add_vectors() to insert embeddings with IDs
     - Implement search() for k-nearest neighbor retrieval
     - Implement delete_vectors() for removing embeddings
     - Implement save_index() and load_index() for persistence
     - _Requirements: 2.5, 3.2, 3.3, 9.1, 9.2, 9.3, 9.4_
-  - [ ]* 5.2 Write property test for vector storage round-trip
+  - [x] 5.2 Write property test for vector storage round-trip
+
     - **Property 7: Vector storage round-trip**
     - **Validates: Requirements 2.5**
-  - [ ]* 5.3 Write property test for FAISS persistence
+  - [x] 5.3 Write property test for FAISS persistence
+
     - **Property 27: FAISS index persistence round-trip**
     - **Validates: Requirements 9.4**
-  - [ ]* 5.4 Write property test for top-k retrieval
+  - [x] 5.4 Write property test for top-k retrieval
+
     - **Property 9: Top-k retrieval count**
     - **Validates: Requirements 3.3**
-  - [ ]* 5.5 Write property test for score ordering
+  - [x] 5.5 Write property test for score ordering
+
     - **Property 10: Retrieval score ordering**
     - **Validates: Requirements 3.4**
 
