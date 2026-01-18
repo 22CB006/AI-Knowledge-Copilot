@@ -129,23 +129,26 @@
     - Test cascade deletion of chunks when document is deleted
     - Test querying chunks by document ID
 
-- [ ] 7. Checkpoint - Ensure all tests pass
+- [x] 7. Checkpoint - Ensure all tests pass
   - Ensure all tests pass, ask the user if questions arise.
 
-- [ ] 8. Implement document processing
-  - [ ] 8.1 Create DocumentProcessor class for PDF and web content
+- [x] 8. Implement document processing
+  - [x] 8.1 Create DocumentProcessor class for PDF and web content
     - Implement process_pdf() using PyPDF2 or pdfplumber
     - Implement process_url() using requests and BeautifulSoup
     - Implement extract_text() to handle both sources
     - Add error handling for invalid files and failed web requests
     - _Requirements: 1.1, 1.3, 7.1_
-  - [ ]* 8.2 Write property test for text extraction
+  - [x] 8.2 Write property test for text extraction
+
     - **Property 1: Text extraction completeness**
     - **Validates: Requirements 1.1**
-  - [ ]* 8.3 Write property test for web content extraction
+  - [x] 8.3 Write property test for web content extraction
+
     - **Property 21: Web content extraction**
     - **Validates: Requirements 7.1**
-  - [ ]* 8.4 Write unit tests for error handling
+  - [x] 8.4 Write unit tests for error handling
+
     - Test handling of corrupted PDFs
     - Test handling of invalid URLs
     - Test handling of non-HTML web content
