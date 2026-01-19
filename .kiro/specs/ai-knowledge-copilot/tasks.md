@@ -153,26 +153,33 @@
     - Test handling of invalid URLs
     - Test handling of non-HTML web content
 
-- [ ] 9. Implement document indexing pipeline
-  - [ ] 9.1 Create DocumentIndexer to coordinate chunking, embedding, and storage
+- [-] 9. Implement document indexing pipeline
+  - [x] 9.1 Create DocumentIndexer to coordinate chunking, embedding, and storage
     - Implement index_document() that orchestrates the full pipeline
     - Process document → chunk → embed → store in FAISS + metadata
     - Track document IDs and ensure independence
     - Handle multiple documents without interference
     - _Requirements: 1.5, 2.1, 2.2, 2.3, 2.4, 2.5_
-  - [ ]* 9.2 Write property test for document independence
+  - [x] 9.2 Write property test for document independence
+
     - **Property 2: Document independence**
     - **Validates: Requirements 1.5**
-  - [ ]* 9.3 Write property test for web content pipeline consistency
+
+
+  - [x] 9.3 Write property test for web content pipeline consistency
+
     - **Property 22: Web content pipeline consistency**
     - **Validates: Requirements 7.2**
-  - [ ]* 9.4 Write property test for web metadata preservation
+  - [x] 9.4 Write property test for web metadata preservation
+
     - **Property 23: Web content metadata preservation**
     - **Validates: Requirements 7.4**
-  - [ ]* 9.5 Write property test for URL processing independence
+  - [x] 9.5 Write property test for URL processing independence
+
     - **Property 24: URL processing independence**
     - **Validates: Requirements 7.5**
-  - [ ]* 9.6 Write integration test for end-to-end indexing
+  - [x] 9.6 Write integration test for end-to-end indexing
+
     - Test uploading a PDF and verifying chunks in FAISS
     - Test uploading web content and verifying metadata
 
