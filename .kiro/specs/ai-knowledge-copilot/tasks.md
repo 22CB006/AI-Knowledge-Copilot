@@ -183,15 +183,17 @@
     - Test uploading a PDF and verifying chunks in FAISS
     - Test uploading web content and verifying metadata
 
-- [ ] 10. Implement semantic retrieval
-  - [ ] 10.1 Create SemanticRetriever class
+- [x] 10. Implement semantic retrieval
+  - [x] 10.1 Create SemanticRetriever class
     - Implement retrieve() to convert query to embedding and search FAISS
     - Implement retrieve_with_scores() to return chunks with similarity scores
     - Add similarity threshold filtering
     - Handle empty results gracefully
     - _Requirements: 3.1, 3.2, 3.3, 3.4, 3.5_
-  - [ ]* 10.2 Write property test for retrieval score ordering (already covered in 5.5)
-  - [ ]* 10.3 Write unit tests for threshold filtering
+  - [x] 10.2 Write property test for retrieval score ordering (already covered in 5.5)
+
+  - [x] 10.3 Write unit tests for threshold filtering
+
     - Test that results below threshold are excluded
     - Test empty results when no chunks meet threshold
 
