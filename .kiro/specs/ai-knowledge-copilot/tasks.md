@@ -197,8 +197,8 @@
     - Test that results below threshold are excluded
     - Test empty results when no chunks meet threshold
 
-- [ ] 11. Implement reranking engine
-  - [ ] 11.1 Create Reranker class using cross-encoder model
+- [x] 11. Implement reranking engine
+  - [x] 11.1 Create Reranker class using cross-encoder model
     - Initialize with cross-encoder model (ms-marco-MiniLM-L-6-v2)
     - Implement rerank() to score and reorder chunks
     - Implement score_pairs() for query-chunk relevance scoring
