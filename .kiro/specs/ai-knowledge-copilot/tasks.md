@@ -218,8 +218,8 @@
     - **Property 14: Metadata preservation through reranking**
     - **Validates: Requirements 4.5**
 
-- [ ] 12. Implement LLM generator with hallucination control
-  - [ ] 12.1 Create LLMGenerator class supporting multiple backends
+- [x] 12. Implement LLM generator with hallucination control
+  - [x] 12.1 Create LLMGenerator class supporting multiple backends
     - Implement generate_answer() with context-grounded prompts
     - Implement generate_with_citations() to include source references
     - Add prompt template with hallucination control instructions
